@@ -1,0 +1,34 @@
+name: Nano firmware checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compile-and-simulate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: SmartTomchi
+      - uses: arduino/setup-arduino-cli@v2
+        with:
+          version: '1.6.0'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install board and libraries
+        run: |
+          arduino-cli core update-index
+          arduino-cli core install arduino:avr@1.8.6
+          arduino-cli lib install "LiquidCrystal@1.0.7" "DHT sensor library@1.4.6" "Adafruit Unified Sensor@1.1.15"
+      - name: Install test dependency
+        working-directory: SmartTomchi
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Compile variants and simulate actual firmware
+        working-directory: SmartTomchi
+        run: python tests/run_checks.py

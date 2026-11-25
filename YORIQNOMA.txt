@@ -1,0 +1,12 @@
+SMART TOMCHI 1.0
+
+To'liq o'rnatish, LCD, kalibrlash va GitHub yo'riqnomasi: README.md
+Tekshiruv natijalari: TEST_RESULTS.md
+
+Arduino IDE orqali SmartTomchi.ino ni oching. Barcha .h fayllar yonida bo'lsin.
+Default: DEMO + USB Serial Monitor, 9600 baud.
+LCD uchun Config.h dagi pinlarni tekshirib, ST_LCD_ENABLED va
+ST_PIN_MAPPING_CONFIRMED qiymatlarini 1 qiling.
+Haqiqiy o'lchov uchun ST_DEMO_MODE=0 va ikki nuqtali kalibrlash kerak.
+
+Kompilyatsiya va AVR simulyatsiyasi tekshirildi. Apparatda hali sinalmagan.

@@ -1,0 +1,11 @@
+.build/
+node_modules/
+*.hex
+*.elf
+*.eep
+*.map
+*.o
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
